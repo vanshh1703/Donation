@@ -213,7 +213,7 @@ export default function Home() {
                         <h4 className="text-white font-black uppercase text-sm tracking-widest mb-8">Quick Links</h4>
                         <ul className="space-y-4 font-bold">
                             <li><a href="#" className="hover:text-teal-400 transition-colors">About our Mission</a></li>
-                            <li><a href="#" className="hover:text-teal-400 transition-colors">Impact Reports 2026</a></li>
+                            <li><a href="#" className="hover:text-teal-400 transition-colors">Impact Reports 2025</a></li>
                             <li><a href="#" className="hover:text-teal-400 transition-colors">Category Breakdown</a></li>
                             <li><a href="#" className="hover:text-teal-400 transition-colors">Partner with us</a></li>
                         </ul>
@@ -240,7 +240,7 @@ export default function Home() {
                 </div>
 
                 <div className="pt-10 border-top border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-sm font-bold text-slate-500">
-                    <div>© 2024 Donation Foundation. All rights reserved.</div>
+                    <div>© 2026 Donation Foundation. All rights reserved.</div>
                     <div className="flex gap-8 italic">
                         <span>Built for Impact</span>
                         <span>Privacy Policy</span>
