@@ -20,7 +20,7 @@ import {
     ShieldAlert, Workflow
 } from 'lucide-react';
 import './Dashboard.css';
-import './App.css';
+import '../App.css';
 
 // --- CINEMATIC DESIGN CONFIG ---
 const THEME = {
@@ -76,6 +76,59 @@ const RECENT_ALERTS_LOG = [
     { type: 'WORKFLOW_MSG', title: '12 Bills pending SE Sign', detail: 'Due for payment cycle in next 24h', status: 'info', time: '3h ago' },
 ];
 
+// --- NESTED ANALYTICS DATA (FOR INNOVATIVE HOVER) ---
+const NESTED_STAGES = {
+    'Public Notice': [
+        { name: 'Portal Upload', value: 84 },
+        { name: 'Paper Advt', value: 100 }
+    ],
+    'Tech Eval': [
+        { name: 'Committee Review', value: 42 },
+        { name: 'Technical Demo', value: 30 },
+        { name: 'Doc Verification', value: 70 }
+    ],
+    'Fin Eval': [
+        { name: 'Rate Analysis', value: 36 },
+        { name: 'Comparative Map', value: 50 }
+    ],
+    'AOC Issued': [
+        { name: 'Final Approval', value: 24 },
+        { name: 'Vendor Notification', value: 30 }
+    ],
+    'Agreement': [
+        { name: 'Legal Signing', value: 20 },
+        { name: 'Stamp Duty', value: 25 }
+    ],
+    'Completed': [
+        { name: 'Final Handover', value: 15 },
+        { name: 'Release Performance', value: 13 }
+    ]
+};
+
+const NESTED_DISBURSEMENT = {
+    'Oct 23': [{ p: 'W1', v: 40 }, { p: 'W2', v: 70 }, { p: 'W3', v: 45 }, { p: 'W4', v: 35 }],
+    'Nov 23': [{ p: 'W1', v: 55 }, { p: 'W2', v: 45 }, { p: 'W3', v: 80 }, { p: 'W4', v: 60 }],
+    'Dec 23': [{ p: 'W1', v: 85 }, { p: 'W2', v: 95 }, { p: 'W3', v: 70 }, { p: 'W4', v: 100 }],
+    'Jan 24': [{ p: 'W1', v: 45 }, { p: 'W2', v: 65 }, { p: 'W3', v: 55 }, { p: 'W4', v: 50 }],
+    'Feb 24': [{ p: 'W1', v: 110 }, { p: 'W2', v: 140 }, { p: 'W3', v: 120 }, { p: 'W4', v: 110 }],
+    'Mar 24': [{ p: 'W1', v: 130 }, { p: 'W2', v: 160 }, { p: 'W3', v: 180 }, { p: 'W4', v: 180 }]
+};
+
+const NESTED_RADAR = {
+    'Tendering': [{ n: 'Speed', v: 85 }, { n: 'Volume', v: 60 }, { n: 'Quality', v: 90 }],
+    'Audit': [{ n: 'Compliance', v: 95 }, { n: 'Speed', v: 70 }, { n: 'Precision', v: 80 }],
+    'Billing': [{ n: 'Accuracy', v: 90 }, { n: 'Velocity', v: 85 }, { n: 'Error Rate', v: 10 }],
+    'Execution': [{ n: 'Timeline', v: 80 }, { n: 'Safety', v: 100 }, { n: 'Efficiency', v: 75 }],
+    'Personnel': [{ n: 'Activity', v: 65 }, { n: 'Output', v: 70 }, { n: 'Retention', v: 90 }],
+};
+
+const NESTED_AGING = {
+    '0-3d': [{ name: 'Critical', value: 40 }, { name: 'Normal', value: 144 }],
+    '4-7d': [{ name: 'Critical', value: 30 }, { name: 'Normal', value: 62 }],
+    '8-15d': [{ name: 'Critical', value: 24 }, { name: 'Normal', value: 30 }],
+    '15d+': [{ name: 'Critical', value: 20 }, { name: 'Normal', value: 12 }],
+};
+
 const MASTER_REGISTRY = [
     { id: 'TN-2024-88', context: 'Phase 2 Smart Road Corridor', stage: 'Financial Vetting', aging: 14, risk: 'High', owner: 'Executive Engineer' },
     { id: 'BL-9350-V', context: 'Urban Water Filtration Network', stage: 'GST Record Verify', aging: 4, risk: 'Low', owner: 'JE Office' },
@@ -85,18 +138,74 @@ const MASTER_REGISTRY = [
 
 // --- CINEMATIC COMPONENT LAYERS ---
 
-const CinematicTooltip = ({ active, payload, label }) => {
+// --- HIGH-OCTANE HOVER STAGE ---
+const HighOctaneTooltip = ({ active, payload, label, context }) => {
     if (active && payload && payload.length) {
+        const primaryVal = payload[0].value;
+        const color = payload[0].fill || payload[0].color || THEME.primary;
+        const name = payload[0].name || label;
+
+        const nestedData = context === 'stages' ? NESTED_STAGES[label] :
+            context === 'disbursement' ? NESTED_DISBURSEMENT[label] :
+                context === 'radar' ? NESTED_RADAR[label] :
+                    context === 'aging' ? NESTED_AGING[label] : null;
+
         return (
-            <div style={{ background: '#FFFFFF', padding: '16px', borderRadius: '18px', border: '1px solid #E2E8F0', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }}>
-                <p style={{ fontSize: '11px', fontWeight: 800, color: '#94A3B8', textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.05em' }}>{label}</p>
-                {payload.map((p, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-                        <div style={{ width: 10, height: 10, borderRadius: '50%', background: p.color || p.fill }} />
-                        <span style={{ fontSize: '14px', fontWeight: 700, color: '#1E293B' }}>{p.name}: </span>
-                        <span style={{ fontSize: '14px', fontWeight: 800, color: THEME.primary }}>{typeof p.value === 'number' ? `₹${p.value}Cr` : p.value}</span>
+            <div className="innovative-tooltip-v2">
+                <div className="tooltip-header">
+                    <div className="header-left">
+                        <span className="tooltip-meta">ANALYTICS SEGMENT</span>
+                        <h4 className="tooltip-title">{label || name}</h4>
                     </div>
-                ))}
+                    <div className="tooltip-data">
+                        <span className="tooltip-value" style={{ color: color }}>
+                            {typeof primaryVal === 'number' && primaryVal > 100 ? `₹${(primaryVal / 10).toFixed(1)}k Cr` :
+                                typeof primaryVal === 'number' && primaryVal > 10 ? `₹${primaryVal}Cr` : primaryVal}
+                        </span>
+                    </div>
+                </div>
+
+                {nestedData && (
+                    <div className="nested-context-box">
+                        <div className="nested-header">
+                            <Activity size={10} className="pulse-icon" />
+                            <span>SYSTEM BREAKDOWN</span>
+                        </div>
+                        <div className="nested-visual-stage">
+                            <ResponsiveContainer width="100%" height="100%">
+                                {context === 'stages' || context === 'radar' ? (
+                                    <BarChart data={nestedData}>
+                                        <Bar dataKey={context === 'radar' ? 'v' : 'value'} fill={color} radius={[2, 2, 0, 0]} barSize={16} />
+                                    </BarChart>
+                                ) : context === 'aging' ? (
+                                    <PieChart>
+                                        <Pie data={nestedData} innerRadius={18} outerRadius={30} paddingAngle={2} dataKey="value">
+                                            {nestedData.map((e, i) => <Cell key={i} fill={i === 0 ? THEME.danger : color} />)}
+                                        </Pie>
+                                    </PieChart>
+                                ) : (
+                                    <AreaChart data={nestedData}>
+                                        <defs>
+                                            <linearGradient id={`grad-${label}`} x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="5%" stopColor={color} stopOpacity={0.4} />
+                                                <stop offset="95%" stopColor={color} stopOpacity={0} />
+                                            </linearGradient>
+                                        </defs>
+                                        <Area type="monotone" dataKey="v" stroke={color} fill={`url(#grad-${label})`} strokeWidth={2} />
+                                    </AreaChart>
+                                )}
+                            </ResponsiveContainer>
+                        </div>
+                    </div>
+                )}
+
+                <div className="tooltip-footer">
+                    <div className="footer-status">
+                        <CheckCircle2 size={14} style={{ color: THEME.success }} />
+                        <span>VERIFIED DATA</span>
+                    </div>
+                    <div className="impact-badge">+14.2%</div>
+                </div>
             </div>
         );
     }
@@ -271,7 +380,7 @@ const Dashboard = () => {
                         <div style={{ height: 280, marginTop: '20px' }}>
                             <ResponsiveContainer width="100%" height="100%">
                                 <FunnelChart margin={{ right: 80, bottom: 20 }}>
-                                    <Tooltip content={<CinematicTooltip />} />
+                                    <Tooltip content={<HighOctaneTooltip context="stages" />} />
                                     <Funnel dataKey="val" data={TENDER_FLOW} isAnimationActive>
                                         <LabelList position="right" fill="#64748B" stroke="none" dataKey="name" fontSize={10} fontWeight={800} />
                                     </Funnel>
@@ -289,7 +398,7 @@ const Dashboard = () => {
                                         <Pie data={TENDER_FLOW} cx="50%" cy="50%" innerRadius={80} outerRadius={110} paddingAngle={8} dataKey="val" stroke="none" onClick={(d) => triggerAuditRegistry('Tender', `Phase Audit: ${d.name}`)}>
                                             {TENDER_FLOW.map((e, i) => <Cell key={i} fill={e.fill} />)}
                                         </Pie>
-                                        <Tooltip content={<CinematicTooltip />} />
+                                        <Tooltip content={<HighOctaneTooltip context="stages" />} />
                                     </PieChart>
                                 </ResponsiveContainer>
                                 <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
@@ -303,7 +412,7 @@ const Dashboard = () => {
                                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
                                         <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10, fontWeight: 800 }} />
                                         <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fontWeight: 800 }} />
-                                        <Tooltip content={<CinematicTooltip />} />
+                                        <Tooltip content={<HighOctaneTooltip context="stages" />} />
                                         <Bar dataKey="val" radius={[10, 10, 0, 0]} barSize={44} onClick={(d) => triggerAuditRegistry('Tender', `Stage Deep-Dive: ${d.name}`)}>
                                             {TENDER_FLOW.map((e, i) => <Cell key={i} fill={i === 4 ? THEME.primary : '#E2E8F0'} />)}
                                         </Bar>
@@ -322,7 +431,7 @@ const Dashboard = () => {
                                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
                                     <XAxis dataKey="m" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 800, fill: THEME.slate }} />
                                     <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 800, fill: THEME.slate }} />
-                                    <Tooltip content={<CinematicTooltip />} />
+                                    <Tooltip content={<HighOctaneTooltip context="disbursement" />} />
                                     <Area dataKey="raised" fill={THEME.primary} fillOpacity={0.06} stroke={THEME.primary} strokeWidth={4} />
                                     <Bar dataKey="paid" fill={THEME.secondary} radius={[6, 6, 0, 0]} barSize={28} onClick={(d) => triggerAuditRegistry('Bill', `Ledger Audit: ${d.m}`)} />
                                     <Line type="monotone" dataKey="benchmark" stroke={THEME.indigo} strokeWidth={4} dot={{ r: 5, fill: 'white', strokeWidth: 2 }} />
@@ -339,7 +448,7 @@ const Dashboard = () => {
                                     <PolarGrid stroke="#E2E8F0" />
                                     <PolarAngleAxis dataKey="subject" tick={{ fontSize: 11, fontWeight: 800, fill: THEME.slate }} />
                                     <Radar name="EE Performance" dataKey="score" stroke={THEME.primary} fill={THEME.primary} fillOpacity={0.15} />
-                                    <Tooltip content={<CinematicTooltip />} />
+                                    <Tooltip content={<HighOctaneTooltip context="radar" />} />
                                 </RadarChart>
                             </ResponsiveContainer>
                         </div>
@@ -432,7 +541,7 @@ const Dashboard = () => {
                                                 <Cell key={i} fill={e.range === '15d+' ? THEME.primary : THEME.palette[i + 1]} />
                                             ))}
                                         </RadialBar>
-                                        <Tooltip content={<CinematicTooltip />} />
+                                        <Tooltip content={<HighOctaneTooltip context="aging" />} />
                                         <Legend iconSize={10} layout="vertical" verticalAlign="middle" wrapperStyle={{ right: 0, fontSize: '12px', fontWeight: 800 }} />
                                     </RadialBarChart>
                                 </ResponsiveContainer>
