@@ -1,5 +1,7 @@
 import { TrendingUp, Users, Heart, Shield, Globe, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, ExternalLink, CheckCircle2 } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Cell } from 'recharts';
+import { Link } from 'react-router-dom';
+import Header from "../components/Header";
 import banner from "../assets/banner.png";
 import impactBanner from "../assets/impact_banner.png";
 
@@ -23,23 +25,9 @@ const RECENT_DONORS = [
 export default function Home() {
     return (
         <div className="bg-gray-50 min-height-screen flex flex-col">
-            <header className="flex border-b bg-white border-gray-200 py-4 px-6 md:px-20 justify-between items-center sticky top-0 z-50 shadow-sm">
-                <div className="flex items-center gap-2">
-                    <Heart className="text-teal-500 fill-teal-500" size={24} />
-                    <div className="text-2xl font-black text-teal-600 tracking-tight">Donation</div>
-                </div>
-                <nav className="hidden md:flex gap-8 items-center">
-                    <a href="#" className="text-gray-600 font-semibold hover:text-teal-500 transition-colors">Home</a>
-                    <a href="#" className="text-gray-600 font-semibold hover:text-teal-500 transition-colors">Impact</a>
-                    <a href="#" className="text-gray-600 font-semibold hover:text-teal-500 transition-colors">Categories</a>
-                    <button className="bg-teal-500 text-white px-6 py-2.5 rounded-full font-bold shadow-md hover:bg-teal-600 hover:shadow-lg transition-all active:scale-95">
-                        Start Donating
-                    </button>
-                </nav>
-            </header>
+            <Header />
 
             <main className="grow">
-                {/* Hero Section */}
                 <div className="flex flex-col md:flex-row justify-evenly items-center bg-linear-to-br from-amber-50 to-teal-50 py-12 px-6 md:px-20 gap-10">
                     <div className="max-w-xl text-center md:text-left space-y-6">
                         <span className="bg-teal-100 text-teal-700 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider">Trusted by 10k+ Donors</span>
@@ -64,7 +52,6 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* Search & Categories */}
                 <section className="py-16 px-6 md:px-20">
                     <div className="max-w-2xl mx-auto text-center mb-12 space-y-4">
                         <h2 className="text-3xl font-bold text-slate-800">Explore Causes</h2>
@@ -92,7 +79,7 @@ export default function Home() {
                                 </div>
                                 <h3 className="text-2xl font-bold text-slate-800 mb-3">{item.title}</h3>
                                 <p className="text-slate-500 leading-relaxed mb-6">{item.desc}</p>
-                                <button className="w-full py-4 bg-teal-50 text-teal-600 rounded-2xl font-bold hover:bg-teal-500 hover:text-white transition-all flex items-center justify-center gap-2 mt-auto">
+                                <button className="w-full py-4 bg-teal-50 text-teal-600 rounded-2xl font-bold hover:bg-teal-500 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 mt-auto">
                                     Donate Now <ExternalLink size={16} />
                                 </button>
                             </div>
@@ -100,7 +87,6 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* Impact Analytics Section */}
                 <section className="bg-slate-900 py-20 px-6 md:px-20 text-white overflow-hidden relative">
                     <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
                         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="1" /></pattern></defs><rect width="100%" height="100%" fill="url(#grid)" /></svg>
@@ -155,7 +141,6 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* Secondary Banner - Call to Action */}
                 <section className="py-20 px-6 md:px-20">
                     <div className="relative h-[450px] rounded-[50px] overflow-hidden group shadow-2xl">
                         <img src={impactBanner} alt="Impact" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
@@ -171,7 +156,6 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* Recent Donors */}
                 <section className="bg-amber-50/50 py-20 px-6 md:px-20">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6 text-center md:text-left">
                         <div className="space-y-2">
@@ -207,7 +191,6 @@ export default function Home() {
                 </section>
             </main>
 
-            {/* Footer */}
             <footer className="bg-slate-900 text-slate-300 py-20 px-6 md:px-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
                     <div className="space-y-6">
@@ -230,7 +213,7 @@ export default function Home() {
                         <h4 className="text-white font-black uppercase text-sm tracking-widest mb-8">Quick Links</h4>
                         <ul className="space-y-4 font-bold">
                             <li><a href="#" className="hover:text-teal-400 transition-colors">About our Mission</a></li>
-                            <li><a href="#" className="hover:text-teal-400 transition-colors">Impact Reports 2024</a></li>
+                            <li><a href="#" className="hover:text-teal-400 transition-colors">Impact Reports 2026</a></li>
                             <li><a href="#" className="hover:text-teal-400 transition-colors">Category Breakdown</a></li>
                             <li><a href="#" className="hover:text-teal-400 transition-colors">Partner with us</a></li>
                         </ul>
