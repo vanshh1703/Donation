@@ -1,2 +1,0 @@
-# Donation
-Donation Management app
