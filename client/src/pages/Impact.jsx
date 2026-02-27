@@ -75,7 +75,6 @@ export default function Impact() {
                     </div>
                 </section>
 
-                {/* Main Analytics Grid */}
                 <section className="py-32 px-6 md:px-20 max-w-7xl mx-auto">
                     <div className="mb-20 text-center space-y-4">
                         <h2 className="text-4xl font-black text-slate-900 tracking-tight">The Anatomy of <span className="text-teal-500">Kindness</span></h2>
@@ -83,7 +82,6 @@ export default function Impact() {
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        {/* Financial Growth Chart */}
                         <div className="lg:col-span-2 bg-slate-50 rounded-[40px] p-10 border border-slate-100">
                             <div className="flex justify-between items-center mb-10">
                                 <div>
@@ -117,7 +115,6 @@ export default function Impact() {
                             </div>
                         </div>
 
-                        {/* Distribution Pie Chart */}
                         <div className="bg-slate-900 rounded-[40px] p-10 text-white flex flex-col items-center">
                             <div className="w-full mb-10">
                                 <h3 className="text-xl font-black uppercase tracking-tight">Fund Utilization</h3>
@@ -163,7 +160,6 @@ export default function Impact() {
                         </div>
                     </div>
 
-                    {/* Impact Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-20">
                         {[
                             { label: "Water Projects", val: "150+", icon: <Globe className="text-blue-500" /> },
@@ -182,7 +178,6 @@ export default function Impact() {
                     </div>
                 </section>
 
-                {/* Regional Impact Heatmap Placeholder */}
                 <section className="bg-slate-50 py-32 px-6 md:px-20">
                     <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 items-center">
                         <div className="lg:w-1/2 space-y-8">
@@ -218,7 +213,6 @@ export default function Impact() {
                     </div>
                 </section>
 
-                {/* Call To Action */}
                 <section className="py-40 px-6 md:px-20 text-center max-w-4xl mx-auto space-y-12">
                     <div className="space-y-4">
                         <h2 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tighter">Our Work Only Works <br /><span className="text-teal-500">With You.</span></h2>
@@ -235,7 +229,6 @@ export default function Impact() {
                 </section>
             </main>
 
-            {/* Footer */}
             <footer className="bg-slate-900 text-slate-300 py-24 px-6 md:px-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24 max-w-7xl mx-auto">
                     <div className="space-y-8">

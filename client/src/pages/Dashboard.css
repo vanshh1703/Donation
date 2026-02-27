@@ -23,6 +23,7 @@
     box-shadow: var(--shadow-sm);
     z-index: 1000;
     transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    flex-shrink: 0;
 }
 
 .brand-section {
@@ -43,10 +44,11 @@
     justify-content: center;
     color: white;
     box-shadow: 0 10px 20px -5px var(--primary-glow);
+    flex-shrink: 0;
 }
 
 .brand-name {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 800;
     letter-spacing: -0.05em;
     color: var(--secondary);
@@ -89,19 +91,21 @@
     border-radius: 0 4px 4px 0;
 }
 
-/* 💻 High-Refresh Analytical Stage */
 .dashboard-stage {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 24px;
+    min-width: 0;
 }
 
 .stage-header {
-    height: 90px;
+    min-height: 70px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
 }
 
 .header-meta {
@@ -111,14 +115,14 @@
 }
 
 .header-title-fx {
-    font-size: 34px;
+    font-size: clamp(22px, 3vw, 34px);
     font-weight: 800;
     letter-spacing: -0.05em;
     color: var(--secondary);
 }
 
 .header-sub-fx {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--text-dim);
     font-weight: 600;
 }
@@ -126,24 +130,24 @@
 .header-controls {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 14px;
+    flex-shrink: 0;
 }
 
 .search-field {
     background: white;
     border: 1px solid var(--border-thin);
-    padding: 12px 24px;
+    padding: 12px 20px;
     border-radius: 100px;
     display: flex;
     align-items: center;
     gap: 12px;
-    width: 420px;
+    width: min(380px, 100%);
     box-shadow: var(--shadow-sm);
     transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .search-field:focus-within {
-    width: 480px;
     border-color: var(--primary);
     box-shadow: var(--shadow-card);
 }
@@ -192,12 +196,13 @@
     border-radius: var(--radius-max);
     border: 1px solid var(--border-thin);
     box-shadow: var(--shadow-sm);
-    padding: 32px;
+    padding: 28px;
     transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
+    min-width: 0;
 }
 
 .mesh-card:hover {
@@ -364,24 +369,24 @@
 }
 
 .card-title-fx {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 800;
     color: var(--text-dim);
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 /* 🧧 Cinematic Statistics Strip */
 .kpi-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    gap: 20px;
 }
 
 .kpi-pill {
     background: white;
-    padding: 34px;
+    padding: 28px;
     border-radius: var(--radius-max);
     border: 1px solid var(--border-thin);
     box-shadow: var(--shadow-sm);
@@ -389,7 +394,8 @@
     transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
+    min-width: 0;
 }
 
 .kpi-pill:hover {
@@ -398,7 +404,7 @@
 }
 
 .kpi-val-fx {
-    font-size: 38px;
+    font-size: clamp(26px, 3vw, 38px);
     font-weight: 800;
     letter-spacing: -0.06em;
     color: var(--secondary);
@@ -420,7 +426,7 @@
 
 .ledger-table th {
     background: #F8FAFC;
-    padding: 24px;
+    padding: 20px 16px;
     text-align: left;
     font-size: 11px;
     font-weight: 800;
@@ -428,11 +434,12 @@
     text-transform: uppercase;
     border-bottom: 1px solid #F1F5F9;
     letter-spacing: 0.1em;
+    white-space: nowrap;
 }
 
 .ledger-table td {
-    padding: 26px 24px;
-    font-size: 14.5px;
+    padding: 20px 16px;
+    font-size: 13.5px;
     font-weight: 600;
     border-bottom: 1px solid #F8FAFC;
     color: var(--text-main);
@@ -448,7 +455,7 @@
     inset: 0;
     background: var(--bg-app);
     z-index: 2000;
-    padding: 64px;
+    padding: 32px 16px;
     overflow-y: auto;
     animation: slideInUpCinematic 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -465,6 +472,11 @@
     }
 }
 
+/* ============================
+   RESPONSIVE BREAKPOINTS
+   ============================ */
+
+/* 1600px: Collapse some bento spans */
 @media (max-width: 1600px) {
     .span-4 {
         grid-column: span 6;
@@ -475,6 +487,23 @@
     }
 }
 
+/* 1280px: Narrow sidebar, search field shrinks */
+@media (max-width: 1280px) {
+    .app-sidebar {
+        width: 240px;
+        padding: 30px 16px;
+    }
+
+    .search-field {
+        width: 280px;
+    }
+
+    .audit-overlay {
+        padding: 40px 24px;
+    }
+}
+
+/* 1024px: Hide sidebar, collapse to single col, 2-col KPIs */
 @media (max-width: 1024px) {
     .app-sidebar {
         display: none;
@@ -482,13 +511,139 @@
 
     .dashboard-engine {
         padding: 16px;
+        gap: 16px;
     }
 
     .kpi-row {
         grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
     }
 
     .span-6 {
         grid-column: span 12;
+    }
+
+    .span-8 {
+        grid-column: span 12;
+    }
+
+    .span-4 {
+        grid-column: span 12;
+    }
+
+    .bento-mesh {
+        gap: 16px;
+    }
+
+    .audit-overlay {
+        padding: 24px 16px;
+    }
+
+    /* Audit overlay search + buttons stack */
+    .audit-overlay>div:first-child {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+        margin-bottom: 32px;
+    }
+}
+
+/* 768px: Tablet portrait – 1-col KPIs, tighter header */
+@media (max-width: 768px) {
+    .dashboard-engine {
+        padding: 12px;
+    }
+
+    .kpi-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .kpi-pill {
+        padding: 20px 16px;
+        gap: 10px;
+    }
+
+    .stage-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        min-height: auto;
+        padding-bottom: 8px;
+    }
+
+    .header-controls {
+        width: 100%;
+    }
+
+    .search-field {
+        width: 100%;
+        flex: 1;
+    }
+
+    .mesh-card {
+        padding: 20px 16px;
+    }
+
+    .bento-mesh {
+        gap: 12px;
+    }
+
+    /* Table horizontal scroll on small screens */
+    .ledger-container {
+        overflow-x: auto;
+    }
+
+    .ledger-table {
+        min-width: 640px;
+    }
+
+    .audit-overlay {
+        padding: 16px;
+    }
+}
+
+/* 480px: Phone – 1-col KPIs, smallest padding */
+@media (max-width: 480px) {
+    .dashboard-engine {
+        padding: 8px;
+    }
+
+    .kpi-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .kpi-pill {
+        padding: 16px 14px;
+        gap: 8px;
+    }
+
+    .kpi-val-fx {
+        font-size: 22px;
+    }
+
+    .header-title-fx {
+        font-size: 20px;
+    }
+
+    .mesh-card {
+        padding: 16px 14px;
+    }
+
+    .bento-mesh {
+        gap: 10px;
+    }
+
+    .brand-name {
+        font-size: 16px;
+    }
+
+    .audit-overlay {
+        padding: 12px 8px;
+    }
+
+    .ledger-table {
+        min-width: 520px;
     }
 }

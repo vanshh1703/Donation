@@ -29,9 +29,9 @@ export default function Home() {
 
             <main className="grow">
                 <div className="flex flex-col md:flex-row justify-evenly items-center bg-linear-to-br from-amber-50 to-teal-50 py-12 px-6 md:px-20 gap-10">
-                    <div className="max-w-xl text-center md:text-left space-y-6">
+                    <div className="max-w-xl w-full text-center md:text-left space-y-6">
                         <span className="bg-teal-100 text-teal-700 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider">Trusted by 10k+ Donors</span>
-                        <h1 className="text-5xl md:text-6xl font-extrabold text-slate-800 leading-tight">
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-800 leading-tight">
                             Small Acts, <span className="text-teal-500">Big Impact</span>
                         </h1>
                         <p className="text-lg text-slate-600 leading-relaxed font-medium">
@@ -141,14 +141,14 @@ export default function Home() {
                     </div>
                 </section>
 
-                <section className="py-20 px-6 md:px-20">
-                    <div className="relative h-[450px] rounded-[50px] overflow-hidden group shadow-2xl">
+                <section className="py-10 md:py-20 px-6 md:px-20">
+                    <div className="relative h-[250px] sm:h-[350px] md:h-[450px] rounded-[32px] md:rounded-[50px] overflow-hidden group shadow-2xl">
                         <img src={impactBanner} alt="Impact" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-                        <div className="absolute inset-0 bg-linear-to-r from-teal-900/80 to-transparent flex items-center px-12 md:px-24">
-                            <div className="max-w-xl text-white space-y-6">
-                                <h2 className="text-4xl md:text-5xl font-black tracking-tight leading-tight">Your legacy starts with a single <span className="text-teal-400 underline decoration-white/30">contribution.</span></h2>
-                                <p className="text-teal-100 text-lg font-medium">Join 500+ corporate partners and thousands of individuals making the world a kinder place.</p>
-                                <button className="bg-white text-teal-900 px-10 py-4 rounded-2xl font-black text-lg hover:bg-teal-50 hover:shadow-xl transition-all">
+                        <div className="absolute inset-0 bg-linear-to-r from-teal-900/80 to-transparent flex items-center px-8 md:px-24">
+                            <div className="max-w-xl text-white space-y-4 md:space-y-6">
+                                <h2 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight leading-tight">Your legacy starts with a single <span className="text-teal-400 underline decoration-white/30">contribution.</span></h2>
+                                <p className="text-teal-100 text-sm md:text-lg font-medium hidden sm:block">Join 500+ corporate partners and thousands of individuals making the world a kinder place.</p>
+                                <button className="bg-white text-teal-900 px-6 md:px-10 py-3 md:py-4 rounded-2xl font-black text-base md:text-lg hover:bg-teal-50 hover:shadow-xl transition-all">
                                     Become a Partner
                                 </button>
                             </div>
