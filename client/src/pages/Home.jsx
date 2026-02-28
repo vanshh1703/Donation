@@ -55,12 +55,7 @@ export default function Home() {
                 <section className="py-16 px-6 md:px-20">
                     <div className="max-w-2xl mx-auto text-center mb-12 space-y-4">
                         <h2 className="text-3xl font-bold text-slate-800">Explore Causes</h2>
-                        <div className="relative group">
-                            <input type="search" placeholder="Search causes like 'education', 'food' or 'hospital'..." className="w-full border-2 bg-white focus:outline-none shadow-xl border-slate-100 focus:border-teal-500 rounded-2xl px-6 py-4 text-lg transition-all" />
-                            <div className="absolute right-4 top-1/2 -translate-y-1/2 bg-teal-500 p-2 rounded-xl text-white">
-                                <Globe size={20} />
-                            </div>
-                        </div>
+                       
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
