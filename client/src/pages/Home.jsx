@@ -41,9 +41,9 @@ export default function Home() {
                             <Link to="/categories" className="bg-teal-500 text-white px-8 py-3.5 rounded-xl font-bold text-lg shadow-xl shadow-teal-200 hover:bg-teal-600 hover:-translate-y-1 transition-all inline-block text-center">
                                 Donate Now
                             </Link>
-                            <button className="border-2 border-slate-200 text-slate-600 px-8 py-3.5 rounded-xl font-bold text-lg hover:border-teal-500 hover:text-teal-500 transition-all">
+                            <Link to="/learn-more" className="border-2 border-slate-200 text-slate-600 px-8 py-3.5 rounded-xl font-bold text-lg hover:border-teal-500 hover:text-teal-500 transition-all inline-block text-center">
                                 Learn More
-                            </button>
+                            </Link>
                         </div>
                     </div>
                     <div className="relative group">
@@ -162,9 +162,9 @@ export default function Home() {
                             <h2 className="text-3xl font-black text-slate-800 uppercase tracking-tighter">Wall of Souls</h2>
                             <p className="text-slate-500 font-bold uppercase text-xs tracking-[0.3em]">Latest contributions to humanity</p>
                         </div>
-                        <button className="text-teal-600 font-black flex items-center gap-2 hover:gap-4 transition-all">
+                        <Link to="/donors" className="text-teal-600 font-black flex items-center gap-2 hover:gap-4 transition-all">
                             View All Donors <TrendingUp size={18} />
-                        </button>
+                        </Link>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -212,10 +212,10 @@ export default function Home() {
                     <div>
                         <h4 className="text-white font-black uppercase text-sm tracking-widest mb-8">Quick Links</h4>
                         <ul className="space-y-4 font-bold">
-                            <li><a href="#" className="hover:text-teal-400 transition-colors">About our Mission</a></li>
-                            <li><a href="#" className="hover:text-teal-400 transition-colors">Impact Reports 2025</a></li>
-                            <li><a href="#" className="hover:text-teal-400 transition-colors">Category Breakdown</a></li>
-                            <li><a href="#" className="hover:text-teal-400 transition-colors">Partner with us</a></li>
+                            <li><Link to="/learn-more" className="hover:text-teal-400 transition-colors">About our Mission</Link></li>
+                            <li><Link to="/impact" className="hover:text-teal-400 transition-colors">Impact Reports 2025</Link></li>
+                            <li><Link to="/suggest-cause" className="hover:text-teal-400 transition-colors">Suggest a Cause</Link></li>
+                            <li><Link to="/fundraiser" className="hover:text-teal-400 transition-colors">Start a Fundraiser</Link></li>
                         </ul>
                     </div>
 

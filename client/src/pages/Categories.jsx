@@ -146,12 +146,12 @@ export default function Categories() {
                             We are constantly expanding our reach. You can also start a custom fundraiser or suggest a new category to our transparency committee.
                         </p>
                         <div className="flex flex-wrap justify-center gap-6">
-                            <button className="bg-slate-900 text-white px-10 py-5 rounded-3xl font-black shadow-xl hover:-translate-y-1 transition-all">
+                            <Link to="/suggest-cause" className="bg-slate-900 text-white px-10 py-5 rounded-3xl font-black shadow-xl hover:-translate-y-1 transition-all inline-block text-center">
                                 Suggest a Cause
-                            </button>
-                            <button className="bg-white text-teal-600 px-10 py-5 rounded-3xl font-black shadow-xl hover:-translate-y-1 transition-all">
+                            </Link>
+                            <Link to="/fundraiser" className="bg-white text-teal-600 px-10 py-5 rounded-3xl font-black shadow-xl hover:-translate-y-1 transition-all inline-block text-center">
                                 Custom Fundraiser
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </section>

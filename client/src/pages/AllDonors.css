@@ -1,0 +1,820 @@
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║              VIEW ALL DONORS PAGE — PREMIUM UI              ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* ── Root ────────────────────────────────────────────────────── */
+.vad-page {
+    background: #f8fafc;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    color: #0f172a;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Hero ────────────────────────────────────────────────────── */
+.vad-hero {
+    background: linear-gradient(145deg, #0f172a 0%, #1e293b 60%, #0f172a 100%);
+    padding: 64px 24px 56px;
+    position: relative;
+    overflow: hidden;
+}
+
+.vad-hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+}
+
+.vad-hero-glow-1 {
+    width: 500px;
+    height: 500px;
+    top: -250px;
+    left: -100px;
+    background: rgba(20, 184, 166, 0.12);
+}
+
+.vad-hero-glow-2 {
+    width: 400px;
+    height: 400px;
+    bottom: -200px;
+    right: -80px;
+    background: rgba(99, 102, 241, 0.10);
+}
+
+.vad-hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.vad-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(20, 184, 166, 0.15);
+    border: 1px solid rgba(20, 184, 166, 0.3);
+    color: #2dd4bf;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    width: fit-content;
+}
+
+.vad-hero-h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.vad-hero-h1 span {
+    color: #14b8a6;
+}
+
+.vad-hero-p {
+    font-size: 16px;
+    color: #64748b;
+    font-weight: 500;
+    max-width: 600px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Hero stats strip */
+.vad-hero-stats {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.vad-hero-stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.vad-hero-stat-val {
+    font-size: 26px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.5px;
+    line-height: 1;
+}
+
+.vad-hero-stat-lab {
+    font-size: 11px;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+}
+
+/* ── Ticker bar ──────────────────────────────────────────────── */
+.vad-ticker {
+    background: #020617;
+    padding: 12px 24px;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 1px solid #1e293b;
+}
+
+.vad-ticker-inner {
+    display: inline-flex;
+    gap: 64px;
+    animation: tickerScroll 30s linear infinite;
+}
+
+@keyframes tickerScroll {
+    from {
+        transform: translateX(0)
+    }
+
+    to {
+        transform: translateX(-50%)
+    }
+}
+
+.vad-ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #475569;
+    flex-shrink: 0;
+}
+
+.vad-ticker-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #14b8a6;
+    flex-shrink: 0;
+}
+
+.vad-ticker-name {
+    color: #94a3b8;
+}
+
+.vad-ticker-amt {
+    color: #2dd4bf;
+    font-weight: 900;
+}
+
+.vad-ticker-sep {
+    color: #1e293b;
+}
+
+/* ── Toolbar ─────────────────────────────────────────────────── */
+.vad-toolbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 24px 0;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.vad-search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 220px;
+}
+
+.vad-search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    pointer-events: none;
+}
+
+.vad-search {
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+    border: 2px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 12px 16px 12px 46px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0f172a;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.vad-search:focus {
+    border-color: #14b8a6;
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.12);
+}
+
+.vad-search::placeholder {
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* Filter pills */
+.vad-filter-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.vad-filter-pill {
+    padding: 10px 18px;
+    border-radius: 100px;
+    border: 2px solid #e2e8f0;
+    background: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.vad-filter-pill:hover {
+    border-color: #14b8a6;
+    color: #0f172a;
+}
+
+.vad-filter-pill.active {
+    border-color: #0f172a;
+    background: #0f172a;
+    color: #fff;
+}
+
+/* Sort select */
+.vad-sort {
+    background: #fff;
+    border: 2px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+    outline: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s;
+}
+
+.vad-sort:focus {
+    border-color: #14b8a6;
+}
+
+/* Result count */
+.vad-results-row {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.vad-results-count {
+    font-size: 13px;
+    font-weight: 700;
+    color: #64748b;
+}
+
+.vad-results-count strong {
+    color: #0f172a;
+}
+
+/* ── Top donors podium ───────────────────────────────────────── */
+.vad-podium-section {
+    max-width: 1200px;
+    margin: 32px auto 0;
+    padding: 0 24px;
+}
+
+.vad-podium-title {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #94a3b8;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.vad-podium {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr 1fr;
+    gap: 12px;
+    align-items: end;
+}
+
+@media(max-width:640px) {
+    .vad-podium {
+        grid-template-columns: 1fr;
+    }
+}
+
+.vad-podium-card {
+    border-radius: 24px;
+    padding: 28px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+    transition: transform 0.3s;
+}
+
+.vad-podium-card:hover {
+    transform: translateY(-4px);
+}
+
+.vad-podium-card.gold {
+    background: linear-gradient(145deg, #fef9ee, #fffbf0);
+    border-color: #fcd34d;
+}
+
+.vad-podium-card.silver {
+    background: linear-gradient(145deg, #f8fafc, #f1f5f9);
+    border-color: #cbd5e1;
+}
+
+.vad-podium-card.bronze {
+    background: linear-gradient(145deg, #fff7ed, #fef3ec);
+    border-color: #fdba74;
+}
+
+.vad-podium-rank {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 22px;
+    line-height: 1;
+}
+
+.vad-podium-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 900;
+    color: #fff;
+    margin: 0 auto 14px;
+}
+
+.vad-podium-name {
+    font-size: 16px;
+    font-weight: 900;
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+
+.vad-podium-total {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+}
+
+.vad-podium-total.gold {
+    color: #b45309;
+}
+
+.vad-podium-total.silver {
+    color: #334155;
+}
+
+.vad-podium-total.bronze {
+    color: #c2410c;
+}
+
+.vad-podium-badge {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 12px;
+    border-radius: 100px;
+    display: inline-block;
+}
+
+.vad-podium-badge.gold {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.vad-podium-badge.silver {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.vad-podium-badge.bronze {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.vad-podium-missions {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    margin-top: 8px;
+}
+
+/* ── Main table ───────────────────────────────────────────────── */
+.vad-table-section {
+    max-width: 1200px;
+    margin: 32px auto 0;
+    padding: 0 24px 80px;
+    overflow-x: auto;
+}
+
+.vad-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.vad-table th {
+    background: #f8fafc;
+    padding: 16px 24px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.vad-table td {
+    padding: 16px 24px;
+    border-bottom: 1px solid #f0f2f5;
+    vertical-align: middle;
+}
+
+.vad-table-row {
+    transition: background 0.2s;
+}
+
+.vad-table-row:hover {
+    background: #f8fafc;
+}
+
+.vad-table-row.featured {
+    background: linear-gradient(90deg, #fff, #fffbf0);
+}
+
+.vad-table-row:last-child td {
+    border-bottom: none;
+}
+
+.vad-card-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.vad-card-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 900;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.vad-card-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+}
+
+.vad-card-anon {
+    font-size: 10px;
+    font-weight: 700;
+    color: #94a3b8;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+.vad-cell-time {
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    white-space: nowrap;
+}
+
+.vad-cell-amount {
+    font-size: 16px;
+    font-weight: 900;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+}
+
+.vad-card-category {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 5px 12px;
+    border-radius: 100px;
+    display: inline-flex;
+}
+
+.vad-card-recurring {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #14b8a6;
+    background: #f0fdf9;
+    border: 1px solid #a7f3d0;
+    padding: 4px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.vad-cell-message {
+    font-size: 13px;
+    font-weight: 500;
+    color: #64748b;
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 250px;
+}
+
+/* Category colour map */
+.vad-cat-education {
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+.vad-cat-healthcare {
+    background: #fff1f2;
+    color: #be123c;
+}
+
+.vad-cat-hunger {
+    background: #fffbeb;
+    color: #b45309;
+}
+
+.vad-cat-animals {
+    background: #f0fdf4;
+    color: #15803d;
+}
+
+.vad-cat-water {
+    background: #f0f9ff;
+    color: #0369a1;
+}
+
+.vad-cat-disaster {
+    background: #faf5ff;
+    color: #7c3aed;
+}
+
+.vad-cat-general {
+    background: #f8fafc;
+    color: #475569;
+}
+
+/* Avatar colour map */
+.vac-av-1 {
+    background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+}
+
+.vac-av-2 {
+    background: linear-gradient(135deg, #f43f5e, #f97316);
+}
+
+.vac-av-3 {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+}
+
+.vac-av-4 {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.vac-av-5 {
+    background: linear-gradient(135deg, #f59e0b, #eab308);
+}
+
+.vac-av-6 {
+    background: linear-gradient(135deg, #0ea5e9, #6366f1);
+}
+
+/* ── Load more button ────────────────────────────────────────── */
+.vad-load-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.vad-load-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 36px;
+    border-radius: 14px;
+    background: #fff;
+    border: 2px solid #e2e8f0;
+    font-size: 15px;
+    font-weight: 800;
+    color: #475569;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+}
+
+.vad-load-btn:hover {
+    border-color: #14b8a6;
+    color: #0f172a;
+    background: #f0fdf9;
+}
+
+.vad-load-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.vad-load-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #e2e8f0;
+    border-top-color: #14b8a6;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+/* ── Empty state ─────────────────────────────────────────────── */
+.vad-empty {
+    text-align: center;
+    padding: 80px 24px;
+    grid-column: 1 / -1;
+}
+
+.vad-empty-icon {
+    font-size: 56px;
+    margin-bottom: 16px;
+}
+
+.vad-empty-title {
+    font-size: 20px;
+    font-weight: 900;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.vad-empty-sub {
+    font-size: 15px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* ── Impact CTA strip ────────────────────────────────────────── */
+.vad-cta-strip {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    padding: 56px 24px;
+    text-align: center;
+    margin-top: auto;
+}
+
+.vad-cta-strip h2 {
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+}
+
+.vad-cta-strip p {
+    font-size: 16px;
+    color: #64748b;
+    font-weight: 500;
+    margin-bottom: 28px;
+}
+
+.vad-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #14b8a6, #0d9488);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(20, 184, 166, 0.35);
+    transition: all 0.2s;
+}
+
+.vad-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(20, 184, 166, 0.5);
+}
+
+/* ── Footer ──────────────────────────────────────────────────── */
+.vad-footer {
+    background: #020617;
+    padding: 28px 24px;
+}
+
+.vad-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.vad-footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+}
+
+.vad-footer-heart {
+    color: #14b8a6;
+}
+
+.vad-footer-copy {
+    font-size: 12px;
+    font-weight: 700;
+    color: #334155;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media(max-width:640px) {
+    .vad-hero {
+        padding: 48px 20px 40px;
+    }
+
+    .vad-hero-stats {
+        gap: 20px;
+    }
+
+    .vad-toolbar,
+    .vad-results-row,
+    .vad-podium-section,
+    .vad-grid-section {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .vad-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vad-podium {
+        grid-template-columns: 1fr;
+    }
+}
