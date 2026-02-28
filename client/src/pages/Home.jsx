@@ -38,9 +38,9 @@ export default function Home() {
                             Join our community of change-makers. Your contribution provides food, education, and healthcare to those who need it most.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                            <button className="bg-teal-500 text-white px-8 py-3.5 rounded-xl font-bold text-lg shadow-xl shadow-teal-200 hover:bg-teal-600 hover:-translate-y-1 transition-all">
+                            <Link to="/categories" className="bg-teal-500 text-white px-8 py-3.5 rounded-xl font-bold text-lg shadow-xl shadow-teal-200 hover:bg-teal-600 hover:-translate-y-1 transition-all inline-block text-center">
                                 Donate Now
-                            </button>
+                            </Link>
                             <button className="border-2 border-slate-200 text-slate-600 px-8 py-3.5 rounded-xl font-bold text-lg hover:border-teal-500 hover:text-teal-500 transition-all">
                                 Learn More
                             </button>
@@ -79,9 +79,9 @@ export default function Home() {
                                 </div>
                                 <h3 className="text-2xl font-bold text-slate-800 mb-3">{item.title}</h3>
                                 <p className="text-slate-500 leading-relaxed mb-6">{item.desc}</p>
-                                <button className="w-full py-4 bg-teal-50 text-teal-600 rounded-2xl font-bold hover:bg-teal-500 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 mt-auto">
+                                <Link to="/categories" className="w-full py-4 bg-teal-50 text-teal-600 rounded-2xl font-bold hover:bg-teal-500 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 mt-auto">
                                     Donate Now <ExternalLink size={16} />
-                                </button>
+                                </Link>
                             </div>
                         ))}
                     </div>

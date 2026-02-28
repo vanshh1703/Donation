@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
+import DonateModal from '../components/DonateModal';
 import { Heart, Star, Zap, CheckCircle2, Clock, MapPin, Share2, ArrowLeft, ShieldCheck, TrendingUp, Users } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import medical from '../assets/medical.jpg'
@@ -107,6 +108,13 @@ const IMPACT_CHART = [
 export default function MissionDetails() {
     const { id } = useParams();
     const mission = CATEGORIES.find(c => c.id === parseInt(id));
+    const [donateOpen, setDonateOpen] = useState(false);
+    const [presetAmount, setPresetAmount] = useState(null);
+
+    const openDonate = (preset = null) => {
+        setPresetAmount(preset);
+        setDonateOpen(true);
+    };
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -246,15 +254,29 @@ export default function MissionDetails() {
                                     <div className="pt-6 space-y-4">
                                         <div className="grid grid-cols-2 gap-4">
                                             {["₹500", "₹1,000", "₹2,500", "₹5,000"].map((amt, i) => (
-                                                <button key={i} className="py-4 border-2 border-slate-100 rounded-2xl font-black text-slate-600 hover:border-teal-500 hover:text-teal-600 transition-all active:scale-95">
+                                                <button
+                                                    key={i}
+                                                    onClick={() => openDonate(amt)}
+                                                    className="py-4 border-2 border-slate-100 rounded-2xl font-black text-slate-600 hover:border-teal-500 hover:text-teal-600 transition-all active:scale-95"
+                                                >
                                                     {amt}
                                                 </button>
                                             ))}
                                         </div>
                                         <div className="relative">
-                                            <input type="text" placeholder="Enter Custom Amount" className="w-full bg-slate-50 border border-slate-100 py-4 px-6 rounded-2xl font-bold placeholder:text-slate-400 focus:outline-none focus:border-teal-500/50" />
+                                            <input
+                                                type="text"
+                                                placeholder="Enter Custom Amount"
+                                                className="w-full bg-slate-50 border border-slate-100 py-4 px-6 rounded-2xl font-bold placeholder:text-slate-400 focus:outline-none focus:border-teal-500/50"
+                                                onKeyDown={e => { if (e.key === 'Enter' && e.target.value) openDonate(); }}
+                                                readOnly
+                                                onClick={() => openDonate()}
+                                            />
                                         </div>
-                                        <button className="w-full bg-slate-900 text-white py-5 rounded-[24px] font-black text-xl shadow-xl hover:bg-slate-800 transition-all hover:-translate-y-1 active:scale-95">
+                                        <button
+                                            onClick={() => openDonate()}
+                                            className="w-full bg-slate-900 text-white py-5 rounded-[24px] font-black text-xl shadow-xl hover:bg-slate-800 transition-all hover:-translate-y-1 active:scale-95"
+                                        >
                                             Support This Mission
                                         </button>
                                     </div>
@@ -287,6 +309,13 @@ export default function MissionDetails() {
                     </div>
                 </div>
             </main>
+
+            <DonateModal
+                open={donateOpen}
+                onClose={() => setDonateOpen(false)}
+                mission={mission}
+                initialAmount={presetAmount}
+            />
 
             {/* Reused Footer from pattern */}
             <footer className="bg-slate-900 text-slate-300 py-24 px-6 md:px-20">
